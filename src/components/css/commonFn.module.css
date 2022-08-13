@@ -1,0 +1,11 @@
+.listForm {
+    height: 50%;
+    width: 80%;
+    background-color: rgb(194, 223, 234);
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr;
+}
+
+.input{
+
+}
