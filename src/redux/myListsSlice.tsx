@@ -66,6 +66,7 @@ var initialState: initial = {
 interface modifyListPayloadType {
     book: listItem
     listID: string
+    listTitle: string
 }
 
 interface deleteFromListPayloadType {

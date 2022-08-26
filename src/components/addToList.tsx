@@ -31,12 +31,14 @@ const [duplicate, setDup]=useState([false, ""])
 
 const addToListInComponent=(e:React.SyntheticEvent)=>{
     
-    console.log((e.target as any).parentElement.parentElement.parentElement)
+    // console.log((e.target as any).parentElement.parentElement.parentElement)
     const listID = (e.target as any).parentElement.id
-    
+    const listTitle = (e.target as any).innerHTML
+
     const payload = {
         book: formBookObject(book),
-        listID}
+        listID,
+        listTitle}
     dispatch(addToList(payload))}
     
 
@@ -87,7 +89,7 @@ const createList = (e: React.SyntheticEvent) => {
  
 return (
     <div className={styles.addToList}>
-         <button className = {styles.button} onClick={()=>{console.log("created");toggleCreateOrNot(!createOrNot)}}>New List</button>
+         <button className = {styles.button} onClick={()=>{console.log("created");toggleCreateOrNot(!createOrNot)}}>Create New List</button>
             <div className={styles.createList}>{CreateListPopUp()}</div>
             <ul className={styles.listOfLists}>{myLists.length!=0? listDisplay: <li>You don't have any list yet</li>}</ul>
             <div className={styles.successful}>{addSuccessful=='successful'? <p>The book is added to the list</p>:null}</div>
