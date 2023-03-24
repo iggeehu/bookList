@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom"
 import React, {FC, useEffect} from "react";
-import { useAppSelector, useAppDispatch } from '../../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../../redux/store'
 
 
 export const SignupRedirect: FC = () => {

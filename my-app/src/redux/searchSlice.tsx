@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction, Action, AnyAction, createAsyncThunk, createAction, } from "@reduxjs/toolkit"
 import { SignatureKind, StringLiteralLike } from "typescript"
 import axios from 'axios'
-import {store} from './hooks'
+import {store} from './store'
 
 // ---types---
 

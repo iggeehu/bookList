@@ -1,11 +1,9 @@
-import React, { FC, useEffect, useRef} from "react";
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import React, { FC, useEffect} from "react";
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import {getCommLists} from '../redux/watchedListsSlice'
-import { useState } from "react";
-import { useNavigate, Navigate} from "react-router-dom";
-import {SignInComponent} from './authComponents/SignIn'
-import { Canvas } from "./Canvas";
-import styles from './css/myLists.module.css'
+import { useNavigate, } from "react-router-dom";
+import { Canvas } from "./canvas";
+// import styles from './css/myLists.module.css'
 import { listObject } from "../redux/myListsSlice";
 
 
@@ -18,7 +16,7 @@ export const WatchedLists: FC = () => {
 
    useEffect(
       ()=>{
-      if(auth==""||auth==null)
+      if(auth===""||auth===null)
       {navigate(`/signin`)}
       else{
          dispatch(getCommLists())
@@ -26,7 +24,7 @@ export const WatchedLists: FC = () => {
    }, [])
    
    const redirect = (e: React.SyntheticEvent) => {
-      const userID=e.target.parentElement.parentElement.childNodes[1].id
+      // const userID=e.target.parentElement.parentElement.childNodes[1].id
       const listID=e.target.parentElement.parentElement.id
       navigate(`/user/${listID}/${listID}`)} 
 
@@ -45,7 +43,7 @@ export const WatchedLists: FC = () => {
 
 
    const displayList = (commLists: listObject[]) => {
-      if(commLists.length==0)
+      if(commLists.length===0)
       {return <p>Please be patient, community readling lists are loading...</p>}
       else{
          

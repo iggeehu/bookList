@@ -1,14 +1,10 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
-
-
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from "./authSlice"
 import myListsReducer from './myListsSlice'
 import watchedListsReducer from './watchedListsSlice'
-import searchSliceReducer from './search'
+import searchSliceReducer from './searchSlice'
 import profileSliceReducer from './profileSlice'
-import axios from "axios"
 
 
 

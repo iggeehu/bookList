@@ -1,7 +1,7 @@
 import {createSlice,PayloadAction, current, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 import { listeners } from "process"
-import { useAppDispatch } from "./hooks"
+import { useAppDispatch } from "./store"
 
 export enum readStatus {
    notRead= "notRead",
@@ -82,7 +82,6 @@ interface editListData {
 
 export const getLists = createAsyncThunk("myLists/getLists", async () => {
     try{
-    console.log("getLiists called")
     const headers = {"authorization":localStorage.getItem('token') as string}
     const response = await axios.get("http://localhost:3020/getMyLists", {headers})
     return await response.data}

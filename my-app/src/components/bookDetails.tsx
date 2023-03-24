@@ -1,13 +1,12 @@
 import { FC, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import { useParams, useLocation, Link} from "react-router-dom";
-import { createBrowserHistory } from "history";
-import {createNewList, addToList, listItem, deleteList, getLists} from '../redux/myListsSlice'
-import { getBook } from "../redux/search";
+import { listItem, getLists} from '../redux/myListsSlice'
+import { getBook } from "../redux/searchSlice";
 import styles from './css/bookDetails.module.css'
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 import {AddToList} from './addToList'
 
 
@@ -60,9 +59,9 @@ export const BookDetails: FC = (props) => {
 
         const allBookInList: listItem[] = []
         myLists.map(listObject=>listObject.list.map(book=>allBookInList.push(book)))
-        if(myLists.length!=0)
+        if(myLists.length!==0)
         {
-        const bookOfInterest=allBookInList.filter(book=>book.ID == bookID)[0]
+        const bookOfInterest=allBookInList.filter(book=>book.ID === bookID)[0]
 
         if(!bookOfInterest)
         {return <div>Cannot find this book</div>}
@@ -78,7 +77,7 @@ export const BookDetails: FC = (props) => {
         const description = bookOfInterest.description
 
         const dropDownOfLists = () => {
-            if(auth==null||auth=="")
+            if(auth===null||auth==="")
             {
               return <div>Please <Link to='/signup'>sign up</Link> to see your lists</div>
             }
@@ -106,8 +105,8 @@ export const BookDetails: FC = (props) => {
     
     return(
         <div>
-        <div>{param.fromSearch==":fromSearch"? displayOnSearch():null}</div>
-        <div>{param.fromSearch==":fromList"? displayFromLists():null}</div>
+        <div>{param.fromSearch===":fromSearch"? displayOnSearch():null}</div>
+        <div>{param.fromSearch===":fromList"? displayFromLists():null}</div>
         </div>
     )
 }

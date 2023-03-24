@@ -1,5 +1,5 @@
 import React, { FC, useEffect} from "react";
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import {createNewList, addToList, deleteFromList, deleteList, getLists, listObject, editList, fieldChange} from '../redux/myListsSlice'
 import { useState } from "react";
 import { useParams, useLocation, useNavigate, } from "react-router-dom";

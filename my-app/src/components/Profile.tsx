@@ -1,5 +1,5 @@
 import React, {FC, ReactEventHandler, SyntheticEvent, useEffect, useState} from "react";
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import { Link, useNavigate } from "react-router-dom";
 import { getProfile, getPfp, updateProfile, updatePfp, uploadPfp } from "../redux/profileSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

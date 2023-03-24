@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import { useAppSelector, useAppDispatch } from '../../redux/hooks'
+import { useAppSelector, useAppDispatch } from '../../redux/store'
 import { Navigate, useNavigate } from "react-router-dom";
 import { signIn } from "../../redux/authSlice";
 

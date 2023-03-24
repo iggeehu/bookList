@@ -39,19 +39,17 @@ exports.addToList = async function(req, res, next) {
     const listID = req.body.listID
     const listTitle = req.body.listTitle
     const uniqueID=req.user.uniqueID
-  
-    console.log(listTitle)
     
     let doc= await User.findOneAndUpdate({uniqueID, "lists.listID" : listID}, { "$push": 
     {"lists.$.list": book }}, {new:true})
     const date = new Date();
     const dateString = date.getHours() +":"+ date.getMinutes() +", "+ date.getMonth() +"/"+date.getDate() +"/"+ date.getFullYear() 
-    console.log(date)
 
     const string = req.user.profile.userName + " added book " + req.body.book.title + " to his list " + listTitle +". --- "+dateString
     console.log(string);
-    
-    res.send(doc.lists)
+    try{
+    res.send(doc.lists)}
+    catch{console.error("failed to get doc")}
  }
 
  exports.deleteFromList = async function(req, res, next) {

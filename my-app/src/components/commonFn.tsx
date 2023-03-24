@@ -1,7 +1,5 @@
-import { ObjectTypeDeclaration } from "typescript"
 import { listItem } from "../redux/myListsSlice"
 import { listObject } from "../redux/myListsSlice"
-import { useNavigate } from "react-router-dom"
 import styles from "./css/commonFn.module.css"
         
 
@@ -34,19 +32,20 @@ export const formBookObject=(book:any)=>
     }
     return bookItem}
 
-export const showActionWindow = (e: React.SyntheticEvent, type:string, title:string, displayState:any[], toggleDisplay:React.Dispatch<React.SetStateAction<(string | boolean)[]>>) =>
+export const showActionWindow = (e: React.SyntheticEvent, type:string, title:string, 
+    displayState:any[], toggleDisplay:React.Dispatch<React.SetStateAction<(string | boolean)[]>>) =>
 { 
-    if(displayState[0]==false)
+    if(displayState[0]===false)
             {toggleDisplay([true, title])}
         else{
                 toggleDisplay([false, ""])
-                if(displayState[1]!=title)
+                if(displayState[1]!==title)
                 {toggleDisplay([true, title])}
         }
 }
 
 export const confirmDeleteQuestionWindow = (condition: any, deleteType: string, title:string, cancelFn: Function, deleteFn: Function) =>{
-if(condition[0] && condition[1] == title)
+if(condition[0] && condition[1] === title)
 {
     return(
     <div>
@@ -60,7 +59,7 @@ if(condition[0] && condition[1] == title)
 
 export const listForm = (condition: any, list:listObject, changeFunc: Function, actionFunc: Function, value1, value2) => {
 
-if(condition[0] && condition[1] == list.listTitle)
+if(condition[0] && condition[1] === list.listTitle)
 return(
     <form id={list.listID} onSubmit={actionFunc} className={styles.listForm}>
             <div className={styles.listName}>
@@ -79,13 +78,13 @@ return(
     
 export const convertCamelToNormal = (word: string) => {
     function isUpperCase(str: string) {
-        return str == str.toUpperCase() && str != str.toLowerCase();
+        return str === str.toUpperCase() && str !== str.toLowerCase();
     }
     const indexes: number[] = []
     const argArray: string[] = word.split("")
     for(let i = 0; i<word.length; i++)
     {
-        if(i==0)
+        if(i===0)
         {argArray[i]=argArray[i].toUpperCase()}
         else if(isUpperCase(argArray[i]))
         { 

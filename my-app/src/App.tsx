@@ -10,15 +10,16 @@ import {ListView} from "./components/listView"
 import {OtherListView} from "./components/otherListView"
 import {Home} from './components/home'
 import {BookDetails} from './components/bookDetails'
-import { useAppSelector } from './redux/hooks'
+import { useAppSelector } from './redux/store'
 import {SignUpComponent} from './components/authComponents/SignUp'
 import {SignInComponent} from './components/authComponents/SignIn'
 import {Profile} from './components/Profile'
 import {SignupRedirect} from './components/authComponents/signupRedirect'
 import {SigninRedirect} from './components/authComponents/signinRedirect'
-import styles from "../css/navbar.module.css"
+// import styles from "../css/navbar.module.css"
 
 function App() {
+
   const result=useAppSelector((state)=>state.search.result)
   const auth = useAppSelector((state)=>state.auth.token)
   return (

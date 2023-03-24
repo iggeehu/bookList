@@ -1,27 +1,25 @@
-import React, { FC, useEffect, useRef} from "react";
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
-import myListsSlice, {createNewList, addToList, listItem, deleteList, getLists, listObject, editList, fieldChange} from '../redux/myListsSlice'
-import {resetResult} from '../redux/search'
+import React, { FC, useEffect} from "react";
+import { useAppSelector, useAppDispatch } from '../redux/store'
+import {deleteList, getLists, editList, fieldChange} from '../redux/myListsSlice'
+import {resetResult} from '../redux/searchSlice'
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import { formBookObject } from "./commonFn";
-import { useNavigate, Navigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {confirmDeleteQuestionWindow, showActionWindow, listForm} from "./commonFn"
-import { Canvas } from "./Canvas";
+import { Canvas } from "./canvas";
 import {SignInComponent} from './authComponents/SignIn'
-import styles from './css/myLists.module.css'
-import { deflateRaw } from "zlib";
+// import styles from './css/myLists.module.css'
+
 
 export const MyLists: FC = () => {
    const auth = useAppSelector((state)=>state.auth.token)
-   const myLists = useAppSelector(state=>{console.log(state); return state.myLists.lists})
+   const myLists = useAppSelector(state=>{return state.myLists.lists})
    const navigate=useNavigate()
    const dispatch=useAppDispatch() 
 
 
    useEffect(
       ()=>{
-      if(auth==""||auth==null)
+      if(auth===""||auth===null)
       {navigate(`/signin`)}
       else{
          dispatch(resetResult());
@@ -36,7 +34,7 @@ export const MyLists: FC = () => {
 
    const listNameField = useAppSelector((state) => state.myLists.listNameField)
    const listCommentField = useAppSelector((state) => state.myLists.listCommentField)
-   if(auth==""||auth=="null")
+   if(auth===""||auth==="null")
    {  console.log("unauthorized block is called")
       return (<SignInComponent />)}
 
@@ -56,9 +54,9 @@ export const MyLists: FC = () => {
    }
 
    const change = (e: React.SyntheticEvent) => {
-      if((e.target as any).name=='listCommentField')
+      if((e.target as any).name==='listCommentField')
       {dispatch(fieldChange({name: 'listCommentField', value: e.target.value}))}
-      if((e.target as any).name=='listNameField')
+      if((e.target as any).name==='listNameField')
       {dispatch(fieldChange({name:'listNameField', value: e.target.value}))}
    }
 
@@ -69,18 +67,18 @@ export const MyLists: FC = () => {
       const id=elem.listID
 
       return (
-          <li key={elem.listID} id={elem.listID} className={styles.eachList}>
-            <div className={styles.canvas} id="listImage" ><Canvas listObj={elem}/></div>
-            <div className={styles.title}>{elem.listTitle}</div>
-            <div className={styles.buttons}>
-               <button onClick={redirect}>View</button>
-               <button onClick={(e)=>showActionWindow(e, 'list', elem.listTitle, deleteDisplay, toggleDelete)}>Delete List</button>
-               <button onClick={(e)=>showActionWindow(e, 'list', elem.listTitle, editDisplay, toggleEdit)}>Edit List Details</button>
+          <li key={elem.listID} id={elem.listID} className="flex flex-col items-center bg-slate-400 rounded p-3 list-none ease-in-out duration-150 shadow-md shadow-slate-800 hover:bg-slate-300 hover:shadow-lg">
+            <div className="" id="listImage" ><Canvas listObj={elem}/></div>
+            <div className="font-mono truncate max-w-xs">{elem.listTitle}</div>
+            <div className="">
+               <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" onClick={redirect}>View</button>
+               <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" onClick={(e)=>showActionWindow(e, 'list', elem.listTitle, deleteDisplay, toggleDelete)}>Delete</button>
+               <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" onClick={(e)=>showActionWindow(e, 'list', elem.listTitle, editDisplay, toggleEdit)}>Edit</button>
             </div>
-            <div className={styles.windowOne}>
+            <div className="">
                {listForm(editDisplay, elem, change, submitChange, listNameField, listCommentField)}
             </div> 
-            <div className={styles.windowTwo}>
+            <div className="">
                {confirmDeleteQuestionWindow(deleteDisplay, 'list', elem.listTitle, cancelFn, deleteFn)}
             </div>
           
@@ -88,9 +86,14 @@ export const MyLists: FC = () => {
       )
    })
    
-   return (<div className={styles.myLists}>
-      {listDisplay}
-      </div>)
+   return (
+      <div>
+         <h1 className="font-mono font-bold text-3xl text-center pt-10">My Reading Lists</h1>
+         <div className="grid grid-cols-3 justify-items-center gap-5 p-5 ">
+         {listDisplay}
+         </div>
+      </div>
+      )
    
 
 }

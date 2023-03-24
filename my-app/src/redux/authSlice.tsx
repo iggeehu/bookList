@@ -1,5 +1,4 @@
-import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit"
-import { SignatureKind } from "typescript"
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 
 interface signinData {
@@ -32,9 +31,9 @@ const initialState: authState = {
 
 export const signUp = createAsyncThunk("auth/signUp", async(user:signupData)=>{
     try{
-    if(user.password != user.confirmpassword)
+    if(user.password !== user.confirmpassword)
     {console.log("Please type in the same passwords")}
-    if(user.password == user.confirmpassword)
+    if(user.password === user.confirmpassword)
     {   
             const response = await axios.post("http://localhost:3020/signup", {
             email: user.email,
@@ -94,7 +93,7 @@ extraReducers:(builder) => {
             {state.token = action.payload.token;
              state.userName = action.payload.userName
             state.signInStatus='success'}
-            if(action.payload=='inactive') 
+            if(action.payload==='inactive') 
             {   
                 state.signInStatus='account is not activated.'}
       });
