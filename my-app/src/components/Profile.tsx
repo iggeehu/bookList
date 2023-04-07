@@ -112,15 +112,23 @@ export const Profile: FC = () => {
     const pfpDisplay = () => {
         
         return (<div className = 'profilePic'>
-        <label>Profile Picture</label>
-        <img src={profile.imageSrc}
-        width="120" 
-        height="100"/>
-        <FontAwesomeIcon onClick = {()=>{if(whichTypeEdit!="none"){toggleType("none")}else{toggleType("upload")}}} icon={solid('upload')} />
-        <FontAwesomeIcon onClick = {()=>{if(whichTypeEdit!="none"){toggleType("none")}else{toggleType("url")}}} icon={solid('paperclip')} />
-        <div>
-        {editProfileDisplay()}
-        </div>
+            <div className="my-2">
+                <img src={profile.imageSrc}
+                className="border rounded"
+                width="120" 
+                height="100"/>
+            </div>
+            <FontAwesomeIcon onClick = {()=>{if(whichTypeEdit!="none"){toggleType("none")}else{toggleType("upload")}}} 
+                             icon={solid('upload')} 
+                             className="p-2 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150"
+                             />
+            <FontAwesomeIcon onClick = {()=>{if(whichTypeEdit!="none"){toggleType("none")}else{toggleType("url")}}} 
+                             icon={solid('paperclip')} 
+                             className="p-2 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150"
+                             />
+            <div>
+            {editProfileDisplay()}
+            </div>
         </div>)}
 
  
@@ -153,49 +161,74 @@ export const Profile: FC = () => {
     const display = () => {
         if(editStatus)
         {  return(
-            <div>
-            <form className="profileEdit" onSubmit={submitUpdate}>
-            <div className="pfp">
-            {pfpDisplay()}
-            </div>
-            
-            <label>Username:</label>
-                <input type='text' name="userName" value={state.userName} onChange={changeHandler} /><br />
-            <label>Age:</label>
-                <input type='text' name="age" value={state.age} onChange={changeHandler} /><br />
-            <label>Gender:</label>
-                <input type="radio" id="html" name="gender" value="female" onChange={changeHandler}/>
-                <label htmlFor="female">Female</label><br />
-                <input type="radio" id="css" name="gender" value="male" onChange={changeHandler}/>
-                <label htmlFor="css">Male</label><br />
-                <input type="radio" id="javascript" name="gender" value="other" onChange={changeHandler}/>
-                <label htmlFor="javascript">Other</label>
-            <label>Followed by: {profile.followedBy}</label><br />
-            <label>Following: {profile.following}</label><br />
-                
-            <label>aboutMe:</label>
-                <input type='text' value={state.aboutMe} name="aboutMe" onChange={changeHandler}/><br />
-            <button type='submit'>Save updates</button><br />
-            </form>
-            <div>{updateStatusDisplay()}</div>
-            </div>)
-        }
-        if(!editStatus)
-        {return(
+            <div className="p-10">
+                <p className="px-8 font-mono font-bold text-3xl">{profile.userName? profile.userName +"'s profile": "My Profile"} </p>
+                <form className="p-10 grid grid-cols-4" onSubmit={submitUpdate}>
+                        <div className="p-5 col-span-1">
+                        {pfpDisplay()}
+                        </div>
 
-            <div className="profileDisplay">
-            <div className="pfp">
-            {pfpDisplay()}
-            </div>
-           <label>Username:{profile.userName}</label><br />
-           <label>Age:{profile.age}</label><br />
-           <label>Gender:{profile.gender}</label><br />
-           <label>Followed by:{profile.followedBy}</label><br />
-           <label>Following:{profile.following}</label><br />
-           <label>aboutMe:{profile.aboutMe}</label><br />
-           <button onClick={()=>toggle(!editStatus)}>Edit Profile</button>
-           <div>{updateSuccessDisplay()}</div>
-           </div>
+                        <div className="p-5 col-span-3">
+                            <label>Username:</label>
+                                <input type='text' name="userName" value={state.userName} onChange={changeHandler} /><br />
+                            <label>Age:</label>
+                                <input type='text' name="age" value={state.age} onChange={changeHandler} /><br />
+                            <label>Gender:</label>
+                                <input type="radio" id="html" name="gender" value="female" onChange={changeHandler}/>
+                                <label htmlFor="female">Female</label><br />
+                                <input type="radio" id="css" name="gender" value="male" onChange={changeHandler}/>
+                                <label htmlFor="css">Male</label><br />
+                                <input type="radio" id="javascript" name="gender" value="other" onChange={changeHandler}/>
+                                <label htmlFor="javascript">Other</label>
+                            <label>Followed by: {profile.followedBy? profile.followedBy: "None"}</label><br />
+                            <label>Following: {profile.following? profile.following: "None"}</label><br />
+                                
+                            <label>About Me:</label>
+                                <input type='text' value={state.aboutMe} name="aboutMe" onChange={changeHandler}/><br />
+                            <button type='submit'>Save updates</button><br />
+                        </div>
+                </form>
+                    <div>{updateStatusDisplay()}</div>
+                    </div>)
+                }
+                if(!editStatus)
+                {return(
+                    <div className="p-10">
+                        <p className="px-8 font-mono font-bold text-3xl">{profile.userName? profile.userName +"'s profile": "My Profile"} </p>
+                        <div className="p-10 grid grid-cols-4">
+                            <div className="p-5 col-span-1">
+                            {pfpDisplay()}
+                            </div>
+                            <div className="p-5 col-span-3">
+                                <div>
+                                    <label>Username:</label><label> {profile.userName}</label>
+                                </div>
+                                <br />
+                                <div>
+                                    <label>Age:</label> <label> {profile.age}</label>
+                                </div>
+                                <br />
+                                <div>
+                                    <label>Gender:</label> <label> {profile.gender}</label>
+                                </div>
+                                <br />
+                                <div>
+                                    <label>Followed by:</label> <label>{profile.followedBy.length==0? profile.followedBy: "None"}</label>
+                                </div>
+                                <br />
+                                <div>
+                                <label>Following:</label> <label> {profile.followedBy.length==0? profile.followedBy: "None"}</label>
+                                </div>
+                                <br />
+                                <div>
+                                <label>About Me:</label> <label> {profile.aboutMe}</label>
+                                </div>
+                                <br />
+                                <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" onClick={()=>toggle(!editStatus)}>Edit Profile</button>
+                                <div>{updateSuccessDisplay()}</div>
+                            </div>
+                        </div>
+                    </div>
            
            )
         }
@@ -205,8 +238,9 @@ export const Profile: FC = () => {
     const propertyArray = [userName, age, gender, followedBy, following, aboutMe]
       
 
-    return(<div>
-        <div className = "otherProfile">
+    return(<div className="flex flex-col items-center">
            {display()}
         </div>
-    </div>)}
+    )
+
+}

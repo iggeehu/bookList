@@ -1,8 +1,5 @@
 import { listItem } from "../redux/myListsSlice"
 import { listObject } from "../redux/myListsSlice"
-import styles from "./css/commonFn.module.css"
-        
-
 
 
 export const formBookObject=(book:any)=>
@@ -48,10 +45,12 @@ export const confirmDeleteQuestionWindow = (condition: any, deleteType: string, 
 if(condition[0] && condition[1] === title)
 {
     return(
-    <div>
-    <p>Are you sure you want to delete the {deleteType} "{title}" ?</p>
-    <button onClick={()=>deleteFn(title)}>confirm delete</button>
-    <button onClick={()=>{cancelFn()}}>I'll think about it</button>
+    <div className="">
+    <p>Delete the {deleteType} "{title}" ?</p>
+    <div className="flex justify-center">
+    <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" onClick={()=>deleteFn(title)}>delete</button>
+    <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" onClick={()=>{cancelFn()}}>cancel</button>
+    </div>
     </div>
     )
 }}
@@ -61,18 +60,20 @@ export const listForm = (condition: any, list:listObject, changeFunc: Function, 
 
 if(condition[0] && condition[1] === list.listTitle)
 return(
-    <form id={list.listID} onSubmit={actionFunc} className={styles.listForm}>
-            <div className={styles.listName}>
-            <label>List Name</label>
-            <input className={styles.input} onChange={changeFunc} type='text' name='listNameField' value={value1} placeholder={list.listTitle}></input>
+    <form id={list.listID} onSubmit={actionFunc} className="justify-center">
+            <div className="">
+            <label>List  Name:</label>
+            <input className="rounded hover:border" onChange={changeFunc} type='text' name='listNameField' value={value1} placeholder={list.listTitle}></input>
             </div>
 
-            <div className={styles.listComment}>
-            <label>List Comment</label>
-            <input className={styles.input} onChange={changeFunc} type='text' name='listCommentField' value={value2} placeholder={list.listComment}></input>
+            <div className="">
+            <label>Description:</label>
+            <input className="rounded hover:border" onChange={changeFunc} type='text' name='listCommentField' value={value2} placeholder={list.listComment}></input>
             </div>
 
-            <button className={styles.button} type='submit'>Submit</button>
+            <div className="flex justify-center">
+            <button className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150" type='submit'>Submit</button>
+            </div>
     </form>
 )}  
     

@@ -66,7 +66,6 @@ export const AddToList: FC<propType> = (props:propType) => {
 
         if (e.key === 'Enter') {  
             e.preventDefault();
-            console.log("prevent default")
             createList();
         }}
 

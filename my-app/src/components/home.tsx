@@ -20,7 +20,7 @@ export const Home: FC = () => {
     const myLists = useAppSelector((state)=>state.myLists.lists) 
     const navigate = useNavigate();
     const result = useAppSelector((state) => state.search.result)
-   
+    console.log(myLists)
   
     //actions
     const change:React.ChangeEventHandler<HTMLInputElement>=(e)=>{
@@ -44,7 +44,7 @@ export const Home: FC = () => {
         <li className="grid grid-cols-4 min-h-96 rounded-md transition ease-in-out hover:bg-slate-400 border-slate-50 p-2" key={elem.id}> 
             <div className="" onClick = {()=>seeDetails(elem.id, navigate, ":fromSearch")}><img className="" src={elem.volumeInfo.imageLinks?elem.volumeInfo.imageLinks.smallThumbnail:undefined} alt={elem.volumeInfo.title} />
             </div>
-            <p className="" onClick = {()=>seeDetails(elem.id, navigate, ":fromSearch")}>Title: {elem.volumeInfo.title}{elem.volumeInfo.subtitle? ":"+elem.volumeInfo.subtitle:""}</p>
+            <p className="" onClick = {()=>seeDetails(elem.id, navigate, ":fromSearch")}>{elem.volumeInfo.title}{elem.volumeInfo.subtitle? ":"+elem.volumeInfo.subtitle:""}</p>
             <p className="">Authors: {elem.volumeInfo.authors}{elem.volumeInfo.authors? ":"+elem.volumeInfo.authors:""}</p>
             <div className=""><ButtonRendering className="" idElem={elem.id} myLists={myLists}/></div>
             

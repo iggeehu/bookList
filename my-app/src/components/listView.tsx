@@ -4,7 +4,8 @@ import { deleteFromList, deleteList, getLists, editList, fieldChange} from '../r
 import { useState } from "react";
 import { useParams, useNavigate, } from "react-router-dom";
 import {confirmDeleteQuestionWindow, showActionWindow, listForm, seeDetails} from "./commonFn"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid} from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export const ListView: FC = () => {
    
@@ -67,27 +68,28 @@ export const ListView: FC = () => {
     
        if(viewDisplay)
        {    return(
-                <li key={book.ID} id={book.ID} className="bg-slate-400 hover:bg-slate-300 rounded p-5 font-mono">
-                <img src={book.image?book.image.thumbnail:null} alt="book image"></img>
+                <li key={book.ID} id={book.ID} className="bg-slate-400 shadow-md hover:bg-slate-300 rounded p-5 font-mono">
+                <img src={book.image?book.image.thumbnail:null}  onClick = {()=>seeDetails(book.ID, navigate, ":fromList" )} alt="book image"></img>
                 <h4>{title}</h4>
                 <button 
-                className="border hover:bg-slate-400 rounded p-1"
-                onClick = {()=>seeDetails(book.ID, navigate, ":fromList" )}>book details</button>
-                <button 
-                className="border hover:bg-slate-400 rounded p-1"
-                onClick = {(e)=>showActionWindow(e, 'book', title, deleteBookDisplay, toggleDeleteBook)}>delete</button>
+                className="hover:bg-slate-400 rounded p-1"
+                onClick = {(e)=>showActionWindow(e, 'book', title, deleteBookDisplay, toggleDeleteBook)}>
+                    <FontAwesomeIcon icon={solid("trash-can")} />
+                </button>
                 <div>{confirmDeleteQuestionWindow(deleteBookDisplay, 'book', title, cancelFn, deleteFn)}</div>
                 </li>
             )
         }
          else {
             return(
-                <li key={book.ID} id={book.ID} className="flex flex-row bg-slate-400 list-decimal rounded p-3">
-                    <h4 className="basis-4/5 hover:underline cursor-pointer ease-in-out duration-300" 
-                    onClick = {()=>seeDetails(book.ID, navigate, ":fromList" )}>{title}</h4>
+                <li key={book.ID} id={book.ID} className="flex flex-row bg-slate-400 list-decimal rounded shadow-lg p-1">
+                    <p className="basis-4/5 pl-3 hover:underline cursor-pointer ease-in-out duration-300" 
+                    onClick = {()=>seeDetails(book.ID, navigate, ":fromList" )}>{title}</p>
                     <button 
-                    className="border hover:bg-slate-400 rounded p-1"
-                    onClick = {(e)=>showActionWindow(e, 'book', title, deleteBookDisplay, toggleDeleteBook)}>delete</button>
+                    className="hover:bg-slate-400 rounded p-1"
+                    onClick = {(e)=>showActionWindow(e, 'book', title, deleteBookDisplay, toggleDeleteBook)}>
+                        <FontAwesomeIcon icon={solid("trash-can")} />
+                    </button>
                     <div>{confirmDeleteQuestionWindow(deleteBookDisplay, 'book', title, cancelFn, deleteFn)}</div>
                 </li>
                 )
