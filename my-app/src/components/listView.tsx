@@ -56,7 +56,7 @@ export const ListView: FC = () => {
 
 
     const bookDisplay = myLists.filter(list => list.listID === listID)[0].list.map(book=>{
-        
+        console.log(book)
         const dataForDelete = {
             bookID: book.ID,
             listID: listID }
@@ -65,12 +65,15 @@ export const ListView: FC = () => {
         let title=""
         if(book.bookName){title = book.bookName}
         if(book.title){title=book.title}
+
+        let author = book.authors? book.authors: "N/A"
     
        if(viewDisplay)
        {    return(
                 <li key={book.ID} id={book.ID} className="bg-slate-400 shadow-md hover:bg-slate-300 rounded p-5 font-mono">
                 <img src={book.image?book.image.thumbnail:null}  onClick = {()=>seeDetails(book.ID, navigate, ":fromList" )} alt="book image"></img>
-                <h4>{title}</h4>
+                <h4 className="font-bold">{title}</h4> 
+                <h5>{author}</h5>
                 <button 
                 className="hover:bg-slate-400 rounded p-1"
                 onClick = {(e)=>showActionWindow(e, 'book', title, deleteBookDisplay, toggleDeleteBook)}>
@@ -83,8 +86,9 @@ export const ListView: FC = () => {
          else {
             return(
                 <li key={book.ID} id={book.ID} className="flex flex-row bg-slate-400 list-decimal rounded shadow-lg p-1">
-                    <p className="basis-4/5 pl-3 hover:underline cursor-pointer ease-in-out duration-300" 
+                    <p className="basis-2/5 pl-3 hover:underline cursor-pointer ease-in-out duration-300" 
                     onClick = {()=>seeDetails(book.ID, navigate, ":fromList" )}>{title}</p>
+                    <p className="basis-2/5">{author}</p>
                     <button 
                     className="hover:bg-slate-400 rounded p-1"
                     onClick = {(e)=>showActionWindow(e, 'book', title, deleteBookDisplay, toggleDeleteBook)}>
