@@ -1,1 +1,0 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"files_id":{"$numberInt":"1"},"n":{"$numberInt":"1"}},"name":"files_id_1_n_1","background":false}],"uuid":"f47562ff1ead4e18b29879b85f1a163f","collectionName":"fs.chunks","type":"collection"}
