@@ -1,7 +1,7 @@
 
 FROM node:16.13.1-alpine3.13 
 # Set the working directory to /app inside the container
-WORKDIR /usr/app-front
+WORKDIR /usr/app
 # Copy app files
 COPY ./ ./
 COPY package*.json ./
