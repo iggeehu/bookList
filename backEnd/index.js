@@ -11,8 +11,8 @@ const cors=require("cors")
  
 
 //app setup
-
-const db = mongoose.connect("mongodb://localhost:27017/booklistAuth")
+console.log(process.env.DB_URL)
+const db = mongoose.connect("mongodb://0.0.0.0:27017/booklistAuth")
 app.use(morgan('combined'))
 app.options('*', cors())
 app.use(cors())
@@ -24,7 +24,7 @@ router(app)
 
 
 //server setup
-const port = process.env.PORT || 3020
+const port = process.env.PORT || 3000
 const server = http.createServer(app)
 server.listen(port)
 
