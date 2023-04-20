@@ -22,7 +22,7 @@ export const getCommLists = createAsyncThunk("watchedLists/getCommLists", async 
     try{
     
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.get("http://localhost:3020/getCommLists", {headers})
+    const response = await axios.get("http://localhost:3000/getCommLists", {headers})
     
     return await response.data.commLists}
     catch(error)

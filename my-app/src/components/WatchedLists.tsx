@@ -2,8 +2,7 @@ import React, { FC, useEffect} from "react";
 import { useAppSelector, useAppDispatch } from '../redux/store'
 import {getCommLists} from '../redux/watchedListsSlice'
 import { useNavigate, } from "react-router-dom";
-import { Canvas } from "./canvas";
-// import styles from './css/myLists.module.css'
+import { Canvas } from "./Canvas";
 import { listObject } from "../redux/myListsSlice";
 
 
@@ -30,10 +29,10 @@ export const WatchedLists: FC = () => {
 
    const communityLists = commLists.map(elem=>{
       return (
-         <li key={elem.currList.listID} id={elem.currList.listID} className={styles.eachList}>
-           <div className={styles.canvas} id="listImage" ><Canvas listObj={elem.currList}/></div>
-           <div id={elem.userID} className={styles.title} >{elem.currList.listTitle} compiled by {elem.listMakerName}</div>
-           <div className={styles.buttons}>
+         <li key={elem.currList.listID} id={elem.currList.listID} className="">
+           <div className="" id="listImage" ><Canvas listObj={elem.currList}/></div>
+           <div id={elem.userID} className="" >{elem.currList.listTitle} compiled by {elem.listMakerName}</div>
+           <div className="">
               <button onClick={redirect}>View</button>
            </div>
          
@@ -47,7 +46,7 @@ export const WatchedLists: FC = () => {
       {return <p>Please be patient, community readling lists are loading...</p>}
       else{
          
-         return <div className={styles.myLists}>
+         return <div className="">
             {communityLists}
             </div>;
       }

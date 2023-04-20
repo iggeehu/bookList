@@ -24,6 +24,9 @@
 "jwt-encode": "^1.0.1",
     
     
+"merge-packages": "^0.1.6",
+    
+    
 "nodemailer": "^6.7.5",
     
     

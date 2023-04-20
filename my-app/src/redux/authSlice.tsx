@@ -35,7 +35,7 @@ export const signUp = createAsyncThunk("auth/signUp", async(user:signupData)=>{
     {console.log("Please type in the same passwords")}
     if(user.password === user.confirmpassword)
     {   
-            const response = await axios.post("http://localhost:3020/signup", {
+            const response = await axios.post("http://localhost:3000/signup", {
             email: user.email,
             password: user.password})
         return response.data 
@@ -46,7 +46,7 @@ export const signUp = createAsyncThunk("auth/signUp", async(user:signupData)=>{
 
 export const signIn= createAsyncThunk("auth/signIn", async(user:signinData)=>{
     
-    const response = await axios.post("http://localhost:3020/signin", {
+    const response = await axios.post("http://localhost:3000/signin", {
         email: user.email,
         password: user.password})
         localStorage.setItem("token", response.data.token)

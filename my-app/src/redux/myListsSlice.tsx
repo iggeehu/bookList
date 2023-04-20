@@ -83,7 +83,7 @@ interface editListData {
 export const getLists = createAsyncThunk("myLists/getLists", async () => {
     try{
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.get("http://localhost:3020/getMyLists", {headers})
+    const response = await axios.get("http://localhost:3000/getMyLists", {headers})
     return await response.data}
     catch(error)
     {console.log(error)}
@@ -92,7 +92,7 @@ export const getLists = createAsyncThunk("myLists/getLists", async () => {
 export const addToList = createAsyncThunk("myLists/addToList", async (dataForAdd:modifyListPayloadType) => {
     try{
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.post("http://localhost:3020/addToList", dataForAdd, {headers})
+    const response = await axios.post("http://localhost:3000/addToList", dataForAdd, {headers})
     console.log(response.data)
     return await response.data
     }catch(error){
@@ -102,7 +102,7 @@ export const addToList = createAsyncThunk("myLists/addToList", async (dataForAdd
 export const deleteFromList = createAsyncThunk("myLists/addToList", async (dataForDelete:deleteFromListPayloadType) => {
     try{
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.post("http://localhost:3020/deleteFromList", dataForDelete, {headers})
+    const response = await axios.post("http://localhost:3000/deleteFromList", dataForDelete, {headers})
     return await response.data
     }catch(error){
         console.log(error)}})
@@ -110,7 +110,7 @@ export const deleteFromList = createAsyncThunk("myLists/addToList", async (dataF
 export const createNewList = createAsyncThunk("myLists/createNewList", async (listData:listObject) => {
     try{
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.post("http://localhost:3020/createList", {data: listData}, {headers})
+    const response = await axios.post("http://localhost:3000/createList", {data: listData}, {headers})
     return response.data
     }
     catch(error){console.log(error)}})
@@ -118,7 +118,7 @@ export const createNewList = createAsyncThunk("myLists/createNewList", async (li
 export const deleteList = createAsyncThunk("myLists/deleteList", async (listTitle: string) => {
     try{
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.post("http://localhost:3020/deleteList", {listTitle}, {headers})
+    const response = await axios.post("http://localhost:3000/deleteList", {listTitle}, {headers})
     return await response.data}
     catch(error)
     {console.log(error)}})
@@ -126,7 +126,7 @@ export const deleteList = createAsyncThunk("myLists/deleteList", async (listTitl
 export const editList = createAsyncThunk("myLists/editList", async (changeData: editListData) => {
     try{
     const headers = {"authorization":localStorage.getItem('token') as string}
-    const response = await axios.post("http://localhost:3020/editList", {changeData}, {headers})
+    const response = await axios.post("http://localhost:3000/editList", {changeData}, {headers})
     return response.data
     }
     catch(error){console.log(error)}})

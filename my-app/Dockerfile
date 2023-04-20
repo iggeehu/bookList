@@ -4,7 +4,8 @@ FROM node:16.13.1-alpine3.13
 WORKDIR /usr/app
 # Copy app files
 COPY ./ ./
-COPY package*.json ./
+COPY package*.json ./my-app
+
 # ==== BUILD =====
 # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
 

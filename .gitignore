@@ -1,3 +1,6 @@
 backEnd/node_modules
 my-app/node_modules
 my-app/.env
+dump/
+node_modules/
+data/

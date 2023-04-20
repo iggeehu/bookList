@@ -5,7 +5,7 @@ import {resetResult} from '../redux/searchSlice'
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import {confirmDeleteQuestionWindow, showActionWindow, listForm} from "./commonFn"
-import { Canvas } from "./canvas";
+import { Canvas } from "./Canvas";
 import {SignInComponent} from './authComponents/SignIn'
 // import styles from './css/myLists.module.css'
 

@@ -2,46 +2,50 @@ version: "3"
 
 services:
   server-app:
-    container_name: booklistbackend
+    container_name: booklistbackend-container
     restart: always
-    build: ./backEnd
+    image: booklistbackend
     ports:
-      - "8000:8000"
+      - "3000:3000"
     links:
-      - mongo
+      - mongo:4.4.13
     depends_on:
       - mongo
     volumes:
-      - "./server-app/:/app/"
+      - "./backEnd/:/server-app/"
       - "/app/node_modules"
-    environment:
+    environment: 
+      DB_URL: mongodb://mongo:27017/
       MONGO_PASS: example
       MONGO_USER: root
-      MONGO_DB: movies
+      MONGO_DB: booklistAuth
       MONGO_PORT: 27017
-      PORT: 8000
-    command: bash -c "sh ./src/scripts/wait-for-mongo.sh && npm run dev"
+      PORT: 3000
+  
 
   client-app:
-    container_name: client-app
-    build: ./client-app
+    container_name: booklistfrontend-container
+    image: booklistfrontend
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - server-app
     volumes:
-      - "./client-app:/app"
+      - "./my-app/:/client-app/"
       - "/app/node_modules"
     environment:
-      PORT: 3000
-    command: npm run dev
+      PORT: 3001
+   
 
   mongo:
-    container_name: mongo
-    image: mongo
+    container_name: mongo-container
+    image: mongo:4.4.13
+    ports:
+      - "27017:27017"
     volumes:
       - ./data:/data/db
+      - ./dump:/dump
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: movies
+      MONGO_INITDB_DATABASE: bookList

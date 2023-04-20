@@ -33,7 +33,7 @@ const initialState: profile = {
 export const getProfile = createAsyncThunk("profile/getProfile", async()=>{
     try{
         const headers = {"authorization":localStorage.getItem('token') as string}
-        const response = await axios.get("http://localhost:3020/getProfile", {headers})
+        const response = await axios.get("http://localhost:3000/getProfile", {headers})
         return response.data   
      }
     catch(error){console.error(error)}})
@@ -42,7 +42,7 @@ export const getProfile = createAsyncThunk("profile/getProfile", async()=>{
 export const updateProfile = createAsyncThunk("profile/updateProfile", async(data:profile)=>{
     try{
             const headers = {"authorization":localStorage.getItem('token') as string, 'Content-Type': 'application/json'}
-            const response = await axios.post("http://localhost:3020/updateProfile", data, {headers} )
+            const response = await axios.post("http://localhost:3000/updateProfile", data, {headers} )
             return response.data   
         }
     catch(error){console.error(error)}})
@@ -50,7 +50,7 @@ export const updateProfile = createAsyncThunk("profile/updateProfile", async(dat
 export const updatePfp = createAsyncThunk("profile/updatePfp", async(data: object )=> {
     try{
         const headers = {"authorization":localStorage.getItem('token') as string}
-        const response = await axios.post("http://localhost:3020/updatePfp", data, {headers} )
+        const response = await axios.post("http://localhost:3000/updatePfp", data, {headers} )
         return response.data   
     }
     catch(error){}
@@ -60,7 +60,7 @@ export const updatePfp = createAsyncThunk("profile/updatePfp", async(data: objec
 export const uploadPfp = createAsyncThunk("profile/uploadPfp", async(form: FormData )=> {
     try{
         const headers = {"authorization":localStorage.getItem('token') as string}
-        const response = await axios.post("http://localhost:3020/uploadPfp", form, {headers} )
+        const response = await axios.post("http://localhost:3000/uploadPfp", form, {headers} )
         
     }
     catch(error){}
