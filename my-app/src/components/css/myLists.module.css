@@ -1,54 +1,51 @@
-.myLists{
-    /* background-color: rgb(204, 160, 160); */
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2em;
-    margin: 5%;
-    padding: 2%;
-    height: 100%;
-    justify-content: space-evenly
+.myLists {
+  /* background-color: rgb(204, 160, 160); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2em;
+  margin: 5%;
+  padding: 2%;
+  height: 100%;
+  justify-content: space-evenly;
 }
 
-.eachList{
-    height: 30vh;
-    list-style-type:none;
-    display: grid;
-    grid-template-rows: 4fr 1fr 1fr;
-    text-align: center;
-    background-color: rgb(164, 147, 177);
- 
+.eachList {
+  height: 30vh;
+  list-style-type: none;
+  display: grid;
+  grid-template-rows: 4fr 1fr 1fr;
+  text-align: center;
+  background-color: rgb(164, 147, 177);
 }
 
-.eachList:hover{
-    border-style:inset
+.eachList:hover {
+  border-style: inset;
 }
 
 .canvas {
-    width: 80%;
-    /* background-color: goldenrod; */
-    margin: auto;
-    grid-row: 1/2;
+  width: 80%;
+  /* background-color: goldenrod; */
+  margin: auto;
+  grid-row: 1/2;
 }
 
-
-
 .title {
-    grid-row: 2/3;
-    padding-top: 4%;
+  grid-row: 2/3;
+  padding-top: 4%;
 }
 
 .buttons {
-    grid-row: 3/4;
-    padding-top: 4%
+  grid-row: 3/4;
+  padding-top: 4%;
 }
 
 .windowOne {
-    position: absolute;
-    z-index: 1
+  position: absolute;
+  z-index: 1;
 }
 
 .windowTwo {
-    position: absolute;
-    z-index: 1
+  position: absolute;
+  z-index: 1;
 }

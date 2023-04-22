@@ -1,65 +1,53 @@
-.addToList{
+.addToList {
   /* background-color: darkorange; */
-  width:100%;
+  width: 100%;
   z-index: 1;
-    position:absolute;
-
-    
+  position: absolute;
 }
 
 /* addToList children: button, createList, listofLists, successful, duplicateWarning */
 .button:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .button {
-    border:rgb(14, 13, 13);
-    border-style: inset;
+  border: rgb(14, 13, 13);
+  border-style: inset;
 }
 
 .listOfLists {
-    display: flex;
-    flex-direction: column;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    align-items:flex-start;
-    
-    background-color:floralwhite;
+  display: flex;
+  flex-direction: column;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  align-items: flex-start;
 
-   
+  background-color: floralwhite;
 }
-
-
 
 /* singleList is child of listofLists */
 .singleList {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    width: 90%;
-   
-    
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: 90%;
 }
 
 .listTitle {
-    justify-self: start;
+  justify-self: start;
 }
 
 .listTitle:hover {
-    justify-self: start;
-    background-color: rgb(162, 170, 118);
+  justify-self: start;
+  background-color: rgb(162, 170, 118);
 }
-
-
 
 .listButton:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 .createListInput {
-    width: 70%;
-    height: 2em;
-    box-sizing: border-box;
-    border: 1px solid rgb(24, 17, 17);
-    border-radius: 5px;
-    
+  width: 70%;
+  height: 2em;
+  box-sizing: border-box;
+  border: 1px solid rgb(24, 17, 17);
+  border-radius: 5px;
 }

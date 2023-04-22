@@ -1,46 +1,19 @@
 {
-    
-"dependencies": {
-    
-    
-"@fortawesome/fontawesome-svg-core": "^6.1.1",
-    
-    
-"@fortawesome/free-regular-svg-icons": "^6.1.1",
-    
-    
-"@fortawesome/free-solid-svg-icons": "^6.1.1",
-    
-    
-"@fortawesome/react-fontawesome": "^0.1.18",
-    
-    
-"axios": "^0.27.2",
-    
-    
-"crypto": "^1.0.1",
-    
-    
-"jwt-encode": "^1.0.1",
-    
-    
-"merge-packages": "^0.1.6",
-    
-    
-"nodemailer": "^6.7.5",
-    
-    
-"reactjs-popup": "^2.0.5",
-    
-    
-"uuid": "^8.3.2"
-    
-},
-    
-"devDependencies": {
-    
-    
-"@types/uuid": "^8.3.4"
-    
-}
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "axios": "^0.27.2",
+    "crypto": "^1.0.1",
+    "jwt-encode": "^1.0.1",
+    "merge-packages": "^0.1.6",
+    "nodemailer": "^6.7.5",
+    "prettier": "^2.8.7",
+    "reactjs-popup": "^2.0.5",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4"
+  }
 }
