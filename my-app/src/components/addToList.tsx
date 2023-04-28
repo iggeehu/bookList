@@ -21,7 +21,6 @@ type propType = {
 export const AddToList: FC<propType> = (props: propType) => {
   const dispatch = useAppDispatch();
   const inputRef = useRef(null);
-  // const [createListClicked, setCLC] = useState(0)
   const userID = localStorage.getItem("id");
   const addSuccessful = useAppSelector((state) => state.myLists.addSuccessful);
   const book = useAppSelector((state) =>
@@ -34,7 +33,8 @@ export const AddToList: FC<propType> = (props: propType) => {
 
   //actions
   const addToListInComponent = (e: React.SyntheticEvent) => {
-    const listID = (e.target as any).parentElement.id;
+    
+    const listID = (e.target as any).id;
     const listTitle = (e.target as any).innerHTML;
     const payload = {
       book: formBookObject(book),

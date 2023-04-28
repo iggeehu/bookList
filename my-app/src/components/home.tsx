@@ -21,7 +21,6 @@ export const Home: FC = () => {
   const myLists = useAppSelector((state) => state.myLists.lists);
   const navigate = useNavigate();
   const result = useAppSelector((state) => state.search.result);
-  console.log(myLists);
 
   //actions
   const change: React.ChangeEventHandler<HTMLInputElement> = (e) => {

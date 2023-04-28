@@ -43,7 +43,6 @@ export const MyLists: FC = () => {
     (state) => state.myLists.listCommentField
   );
   if (auth === "" || auth === "null") {
-    console.log("unauthorized block is called");
     return <SignInComponent />;
   }
 

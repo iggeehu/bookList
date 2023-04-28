@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 //app setup
-console.log(process.env.DB_URL);
 const db = mongoose.connect("mongodb://127.0.0.1:27017/booklistAuth");
 app.use(morgan("combined"));
 app.options("*", cors());

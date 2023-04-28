@@ -54,14 +54,12 @@ export const Profile: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log("useEffect w pfpSubmitCount called");
     dispatch(getProfile());
   }, [pfpSubmitCount]);
 
   useEffect(() => {
     dispatch(getProfile());
     if (updateStatus == "pending") {
-      console.log("togglepending true");
       togglePending(true);
     }
     if (updateStatus == "success") {
@@ -70,10 +68,8 @@ export const Profile: FC = () => {
       toggleSuccess(true);
       setTimeout(() => {
         toggleSuccess(false);
-        console.log("timeout running");
       }, 5000);
     }
-    console.log(updateStatus);
   }, [updateStatus]);
 
   const imageHandler = (e: SyntheticEvent) => {
@@ -94,18 +90,15 @@ export const Profile: FC = () => {
   const submitPfp = (e: SyntheticEvent) => {
     e.preventDefault();
     togglePfpSubmit(pfpSubmitCount + 1);
-    console.log(pfpSubmitCount);
     const type = (e.target as any).name
       ? (e.target as any).name
       : e.target[0].name;
-    console.log(type);
 
     const data = { type, payload: imageHolder };
     if (type == "pfpUrlSubmit") {
       dispatch(updatePfp(data));
     }
     if (type == "pfpUpload") {
-      console.log(imageHolder);
       dispatch(uploadPfp(data.payload));
     }
   };

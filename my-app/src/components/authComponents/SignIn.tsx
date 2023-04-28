@@ -25,21 +25,21 @@ export const SignInComponent: FC = () => {
   };
 
   return (
-    <div>
-      <h2>Sign in to Booklist</h2>
-      <form onSubmit={reduxSignIn}>
-        <fieldset>
-          <label>Your Email:</label>
-          <input type="text" name="email" />
+    <div className="p-20 grid justify-items-center">
+      <h2 className="text-bold text-3xl p-10">Sign in to Booklist</h2>
+      <form className="grid justify-items-center"  onSubmit={reduxSignIn}>
+        <fieldset className="p-4" >
+          <label className="px-2">Your Email:</label>
+          <input className="rounded hover:border" type="text" name="email" autoFocus/>
         </fieldset>
-        <fieldset>
-          <label>Password:</label>
-          <input type="password" name="password" />
+        <fieldset className="p-4" >
+          <label className='px-2'>Password:</label>
+          <input className="rounded hover:border" type="password" name="password" />
         </fieldset>
-        <button type="submit">Sign In</button>
+        <button type="submit" className="border font-mono text-md rounded bg-slate-400 hover:bg-slate-300 p-1"  >Sign In</button>
       </form>
       <h3>
-        Don't have an account? Click <button onClick={toSignUp}>here</button> to
+        Don't have an account? Click <button className="border font-mono text-md rounded bg-slate-400 hover:bg-slate-300 p-1"  onClick={toSignUp}>here</button> to
         create new account.
       </h3>
     </div>

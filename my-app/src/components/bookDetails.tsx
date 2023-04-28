@@ -18,9 +18,7 @@ export const BookDetails: FC = (props) => {
     dispatch(getBook(bookID));
   }, []);
 
-  useEffect(() => {
-    console.log("hi");
-  }, []);
+
 
   const myLists = useAppSelector((state) => state.myLists.lists);
   const book = useAppSelector((state) => state.search.book);
@@ -41,15 +39,17 @@ export const BookDetails: FC = (props) => {
       const description = book.volumeInfo.description;
 
       return (
-        <div className={styles.detailsMain}>
-          <h2>{title}</h2>
-          <h3>{subtitle}</h3>
+        <div className="p-20 grid">
+          
+          <div><h2 className="p-5 text-xl text-bold text-center">{title}</h2></div>
+          <div><h3 className="p-4 text-l text-bold text-center">{subtitle}</h3></div>
           <img
             src={imgLink ? imgLink : undefined}
             alt={book.volumeInfo.title}
+            className="max-w-xl max-h-xl m-auto"
           />
 
-          <h3>
+          <h3 className="text-center">
             Author:{" "}
             {book.volumeInfo.authors
               ? book.volumeInfo.authors.map((elem) => {
@@ -62,9 +62,9 @@ export const BookDetails: FC = (props) => {
                 })
               : ""}
           </h3>
-          <h4>Publisher: {publisher} </h4>
-          <h4>Published on: {publishedDate}</h4>
-          <p>Description: {description}</p>
+          <h4 className="text-center">Publisher: {publisher} </h4>
+          <h4 className="text-center">Published on: {publishedDate}</h4>
+          <p  className="text-center">Description: <div dangerouslySetInnerHTML={{ __html: description }} ></div></p>
         </div>
       );
     }
@@ -101,7 +101,7 @@ export const BookDetails: FC = (props) => {
             </div>
           );
         } else {
-          return <AddToList bookId={props.idElem} />;
+          return <AddToList myLists={myLists} />;
         }
       };
 

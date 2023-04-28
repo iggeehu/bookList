@@ -103,7 +103,6 @@ exports.signup = async function (req, res, next) {
 exports.activate = async function (req, res, next) {
   const token = req.params.token;
   const doc = await User.findOne({ "status.dataset.token": token });
-  console.log(doc);
   if (doc.status.confirmed == true) {
     res.send("This account has already been confirmed.");
   }
@@ -119,6 +118,7 @@ exports.activate = async function (req, res, next) {
 };
 
 exports.signin = function (req, res, next) {
+  console.log("called")
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "authorization");

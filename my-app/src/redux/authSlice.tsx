@@ -22,6 +22,7 @@ interface authState {
     | "error"
     | "account is not activated.";
   confirmEmailMsg: string | null;
+  passwordDontMatch: boolean
 }
 
 const initialState: authState = {
@@ -31,6 +32,7 @@ const initialState: authState = {
   signUpStatus: "idle",
   signInStatus: "idle",
   confirmEmailMsg: "",
+  passwordDontMatch:false
 };
 
 export const signUp = createAsyncThunk(
@@ -38,9 +40,9 @@ export const signUp = createAsyncThunk(
   async (user: signupData) => {
     try {
       if (user.password !== user.confirmpassword) {
-        console.log("Please type in the same passwords");
+        return "passwords don't match";
       }
-      if (user.password === user.confirmpassword) {
+      else {
         const response = await axios.post("http://localhost:3000/signup", {
           email: user.email,
           password: user.password,
@@ -87,9 +89,13 @@ const authSlice = createSlice({
       state.token = "";
     });
     builder.addCase(signUp.fulfilled, (state, action) => {
-      console.log(action.payload);
+      if(action.payload === "passwords don't match"){
+        state.passwordDontMatch = true
+      }
+      else{
       state.confirmEmailMsg = action.payload;
       state.signUpStatus = "success";
+      }
     });
     builder.addCase(signUp.rejected, (state) => {
       state.token = "";

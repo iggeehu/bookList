@@ -26,7 +26,6 @@ export const ListView: FC = () => {
     dispatch(getLists());
   }, []);
   const state = useAppSelector((state) => state);
-  console.log(state);
   const myLists = useAppSelector((state) => state.myLists.lists);
   const listNameField = useAppSelector((state) => state.myLists.listNameField);
   const listCommentField = useAppSelector(
@@ -79,7 +78,6 @@ export const ListView: FC = () => {
     const bookDisplay = myLists
       .filter((list) => list.listID === listID)[0]
       .list.map((book) => {
-        console.log(book);
         const dataForDelete = {
           bookID: book.ID,
           listID: listID,

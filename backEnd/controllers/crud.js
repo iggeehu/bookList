@@ -38,7 +38,7 @@ exports.addToList = async function (req, res, next) {
   const listID = req.body.listID;
   const listTitle = req.body.listTitle;
   const uniqueID = req.user.uniqueID;
-
+  
   let doc = await User.findOneAndUpdate(
     { uniqueID, "lists.listID": listID },
     { $push: { "lists.$.list": book } },

@@ -25,7 +25,6 @@ export const OtherListView: FC = () => {
   }, []);
 
   const state = useAppSelector((state) => state);
-  console.log(state);
   const lists = state.watchedLists.lists;
  
   
@@ -127,17 +126,6 @@ export const OtherListView: FC = () => {
           </button>
         </div>
 
-  
-        <div>
-          {listForm(
-            editDisplay,
-            list,
-            change,
-            submitChange,
-            listNameField,
-            listCommentField
-          )}
-        </div>
         <div className="w-4/5">{bookDisplayWithNoBookOption()}</div>
       </div>
     );

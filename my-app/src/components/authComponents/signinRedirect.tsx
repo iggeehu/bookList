@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import React, { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../redux/store";
+import { useAppSelector } from "../../redux/store";
 
 export const SigninRedirect: FC = () => {
   const navigate = useNavigate();
