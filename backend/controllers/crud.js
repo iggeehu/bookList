@@ -1,4 +1,3 @@
-const { mapReduce } = require("../models/user");
 const User = require("../models/user");
 
 exports.getMyLists = function (req, res, next) {
@@ -19,8 +18,6 @@ exports.createList = async function (req, res, next) {
   const data = req.body.data;
   const userID = data.listMakerID;
   const user = await User.findOne({ uniqueID: userID });
-  console.log(data);
-  console.log(userID);
   user.lists.push(data);
   user.save().then((savedDoc) => {
     if (savedDoc === user) {
@@ -64,7 +61,6 @@ exports.addToList = async function (req, res, next) {
     listTitle +
     ". --- " +
     dateString;
-  console.log(string);
   try {
     res.send(doc.lists);
   } catch {
@@ -86,7 +82,6 @@ exports.deleteFromList = async function (req, res, next) {
     { $pull: { "lists.$.list": { ID: bookID } } },
     { new: true }
   );
-  console.log(doc.lists);
   res.send(doc.lists);
 };
 
@@ -116,7 +111,7 @@ exports.editList = async function (req, res, next) {
 };
 
 exports.deleteList = async function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*"); 
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "authorization");
 
@@ -168,8 +163,6 @@ exports.getCommLists = async function (req, res, next) {
       ) {
         index = Math.floor(Math.random() * (listLength + 1));
       }
-      // console.log("listLength is" + listLength)
-      // console.log("index is" + index)
       usedIndexMap.get(i).push(index);
       const currList = users[i].lists[index];
       const listObjWithName = { currList, listMakerName, userID };
@@ -178,7 +171,6 @@ exports.getCommLists = async function (req, res, next) {
       }
     }
   }
-  // console.log(CommLists)
   res.status(200).send({ commLists });
 };
 
@@ -190,7 +182,6 @@ exports.getList = async function (req, res, next) {
   const userID = req.query.userID;
   const user= await User.findOne({uniqueID: userID})
   const lists = user.lists.filter((elem) => elem.listID == listID)
-
   res.status(200).send({ lists });
 };
 

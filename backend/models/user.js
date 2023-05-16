@@ -44,13 +44,10 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.methods.comparePassword = function (candidatePassword, cb) {
-  console.log(`this.password is ${this.password}`);
-  console.log(`candidatePassword is ${candidatePassword}`);
   bcrypt.compare(candidatePassword, this.password, function (err, ismatch) {
     if (err) {
       return err;
     }
-    console.log(ismatch);
     cb(err, ismatch);
   });
 };

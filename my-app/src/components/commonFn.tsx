@@ -32,16 +32,16 @@ export const formBookObject = (book: any) => {
 export const showActionWindow = (
   e: React.SyntheticEvent,
   type: string,
-  title: string,
+  id: string,
   displayState: any[],
   toggleDisplay: React.Dispatch<React.SetStateAction<(string | boolean)[]>>
 ) => {
   if (displayState[0] === false) {
-    toggleDisplay([true, title]);
+    toggleDisplay([true, id]);
   } else {
     toggleDisplay([false, ""]);
-    if (displayState[1] !== title) {
-      toggleDisplay([true, title]);
+    if (displayState[1] !== id) {
+      toggleDisplay([true, id]);
     }
   }
 };
@@ -49,20 +49,20 @@ export const showActionWindow = (
 export const confirmDeleteQuestionWindow = (
   condition: any,
   deleteType: string,
-  title: string,
+  elem: any,
   cancelFn: Function,
   deleteFn: Function
 ) => {
-  if (condition[0] && condition[1] === title) {
+  if (condition[0] && condition[1] === elem.listID) {
     return (
       <div className="">
         <p>
-          Delete the {deleteType} "{title}" ?
+          Delete the {deleteType} "{elem.title}" ?
         </p>
         <div className="flex justify-center">
           <button
             className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150"
-            onClick={() => deleteFn(title)}
+            onClick={() => deleteFn(elem.title)}
           >
             delete
           </button>
@@ -88,7 +88,8 @@ export const listForm = (
   value1,
   value2
 ) => {
-  if (condition[0] && condition[1] === list.listTitle)
+
+  if (condition[0] && condition[1] === list.listID)
     return (
       <form id={list.listID} onSubmit={actionFunc} className="justify-center">
         <div className="">

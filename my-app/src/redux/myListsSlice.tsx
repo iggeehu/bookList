@@ -109,8 +109,7 @@ export const addToList = createAsyncThunk(
         dataForAdd,
         { headers }
       );
-      console.log("thunk called");
-      return await response.data;
+     return await response.data;
     } catch (error) {
       console.log(error);
     }

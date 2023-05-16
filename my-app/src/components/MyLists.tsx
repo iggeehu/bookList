@@ -35,13 +35,18 @@ export const MyLists: FC = () => {
     }
   }, []);
 
+
   const [deleteDisplay, toggleDelete] = useState([false, ""]);
   const [editDisplay, toggleEdit] = useState([false, ""]);
 
   const listNameField = useAppSelector((state) => state.myLists.listNameField);
-  const listCommentField = useAppSelector(
-    (state) => state.myLists.listCommentField
-  );
+  const listCommentField = useAppSelector((state) => state.myLists.listCommentField);
+
+  useEffect(()=>{
+    dispatch(fieldChange({name: "listNameField", value: ""}))
+    dispatch(fieldChange({name: "listCommentField", value: ""}))
+  }, [toggleEdit])
+
   if (auth === "" || auth === "null") {
     return <SignInComponent />;
   }
@@ -53,11 +58,19 @@ export const MyLists: FC = () => {
 
   const submitChange = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    
     const listID = (e.target as any).id;
-    const newTitle = listNameField;
-    const newComment = listCommentField;
+    const newTitle = listNameField? listNameField : myLists.filter((elem) => elem.listID === listID)[0].listTitle;
+    const newComment = listCommentField? listCommentField : myLists.filter((elem) => elem.listID === listID)[0].listComment;
+   
     const changeData = { listID, listTitle: newTitle, listComment: newComment };
     dispatch(editList(changeData));
+
+    dispatch(fieldChange({name: "listNameField", value: ""}))
+    dispatch(fieldChange({name: "listCommentField", value: ""}))
+    toggleEdit([false, ""]);
+    toggleDelete([false, ""]);
+
   };
 
   const change = (e: React.SyntheticEvent) => {
@@ -99,7 +112,7 @@ export const MyLists: FC = () => {
               showActionWindow(
                 e,
                 "list",
-                elem.listTitle,
+                elem.listID,
                 deleteDisplay,
                 toggleDelete
               )
@@ -109,14 +122,16 @@ export const MyLists: FC = () => {
           </button>
           <button
             className="font-mono p-1 rounded border text-sm hover:bg-slate-400 ease-in-out duration-150"
-            onClick={(e) =>
+            onClick={(e) =>{
               showActionWindow(
                 e,
                 "list",
-                elem.listTitle,
+                elem.listID,
                 editDisplay,
                 toggleEdit
               )
+              
+            }
             }
           >
             Edit
@@ -136,7 +151,7 @@ export const MyLists: FC = () => {
           {confirmDeleteQuestionWindow(
             deleteDisplay,
             "list",
-            elem.listTitle,
+            elem,
             cancelFn,
             deleteFn
           )}

@@ -18,12 +18,10 @@ exports.getProfile = async function (req, res, next) {
 
   const user = await User.findOne({ uniqueID: req.user.uniqueID });
   const profilePicture = user.profile.profilePicture[0];
-  console.log(profilePicture);
 
   if (profilePicture.type == "pfpUploadSubmit") {
     client.connect(function (err) {
       assert.equal(null, err);
-      console.log("Connected successfully to server!");
       const db = client.db(dbName);
       const bucket = new mongodb.GridFSBucket(db);
       const dlpath = path.join(
@@ -38,7 +36,6 @@ exports.getProfile = async function (req, res, next) {
           assert.ifError(error);
         })
         .on("finish", function () {
-          console.log("done!");
           res.send({
             ...user.profile,
             url: `http://localhost:3020/${profilePicture.payload}.jpeg`,
@@ -56,11 +53,9 @@ exports.updateProfile = async function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "authorization");
   const data = req.body;
-  console.log(data);
   const user = await User.findOne({ uniqueID: req.user.uniqueID });
   user.profile = { ...user.profile, ...data };
   user.save().then(() => {
-    console.log(user);
     res.status(200).send("success");
   });
 };
@@ -71,7 +66,6 @@ exports.updatePfp = async function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "authorization");
   //req.file is the profile picture if it's uploaded
   const data = req.body;
-  console.log(req.body);
   const user = await User.findOne({ uniqueID: req.user.uniqueID });
 
   isImageURL(data.payload).then((is_image) => {
@@ -91,14 +85,12 @@ exports.uploadPfp = async function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "authorization");
-  console.log(req.file);
   const user = await User.findOne({ uniqueID: req.user.uniqueID });
 
   //install mongodriver and add pfp collection
 
   client.connect(function (err) {
     assert.equal(null, err);
-    console.log("Connected successfully to server");
     const db = client.db(dbName);
     var bucket = new mongodb.GridFSBucket(db);
     const uploadStream = bucket.openUploadStream(req.file.filename);
@@ -119,6 +111,5 @@ exports.uploadPfp = async function (req, res, next) {
   };
   user.save().then((user) => {
     res.json(user.profile.profilePicture);
-    console.log(user.profile.profilePicture);
   });
 };

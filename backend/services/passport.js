@@ -21,8 +21,6 @@ const localLogin = new LocalStrategy(localOptions, function (
       return done(null, false);
     }
 
-    // console.log(user)
-    //compare password
     user.comparePassword(password, function (err, ismatch) {
       if (err) {
         return done(err);
@@ -41,9 +39,8 @@ const jwtOptions = {
   secretOrKey: config.secret,
 };
 
-//create JWT strategy, payload here is the decoded jwt token
+
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
-  //See if the user ID in the payload exists in our database,
 
   User.findById(payload.sub, function (err, user) {
     if (err) {
